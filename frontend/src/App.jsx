@@ -662,15 +662,88 @@ const styles = {
   userRoleTag: { fontSize: '11px', color: '#38bdf8' },
   sidebarLogoutBtn: { display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', backgroundColor: '#1e293b', color: '#ef4444', border: '1px solid #334155', padding: '8px', borderRadius: '6px', cursor: 'pointer', fontSize: '12px', fontWeight: '600' },
 
-  // Main Container
-  mainContainer: { flex: 1, padding: '32px 40px', overflowY: 'auto' },
-  topNavbar: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '28px' },
-  pageTitle: { margin: 0, fontSize: '22px', fontWeight: 'bold', color: '#0f172a' },
-  pageSubtitle: { margin: '4px 0 0 0', fontSize: '13px', color: '#64748b' },
-  roleBadgeHeader: { display: 'flex', alignItems: 'center', gap: '6px', backgroundColor: '#e0e7ff', color: '#3730a3', padding: '6px 12px', borderRadius: '20px', fontSize: '12px', fontWeight: '600' },
-  bellButton: { position: 'relative', padding: '8px', borderRadius: '50%', backgroundColor: '#fff', border: '1px solid #e2e8f0', cursor: 'pointer' },
-  notifBadge: { position: 'absolute', top: -3, right: -3, backgroundColor: '#ef4444', color: '#fff', fontSize: '10px', width: '16px', height: '16px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' },
+  /// Main Container - Soft White Glass Overlay with College BG visible
+  mainContainer: { 
+    flex: 1, 
+    padding: '32px 40px', 
+    overflowY: 'auto',
+    backgroundColor: 'rgba(248, 250, 252, 0.88)', 
+    backdropFilter: 'blur(10px)',
+    WebkitBackdropFilter: 'blur(10px)',
+    minHeight: '100vh'
+  },
+  topNavbar: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' },
+  pageTitle: { margin: 0, fontSize: '24px', fontWeight: 'bold', color: '#0f172a' },
+  pageSubtitle: { margin: '4px 0 0', fontSize: '13px', color: '#64748b' },
+  roleBadgeHeader: { display: 'flex', alignItems: 'center', gap: '6px', backgroundColor: 'rgba(15, 23, 42, 0.06)', padding: '6px 12px', borderRadius: '20px', color: '#0f172a', fontSize: '12px', fontWeight: '600' },
+  bellButton: { position: 'relative', padding: '8px', borderRadius: '50%', backgroundColor: '#ffffff', border: '1px solid #e2e8f0', cursor: 'pointer' },
 
+  // Analytics Grid - Clean White SaaS Cards
+  statsGrid: { display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '16px', marginBottom: '24px' },
+  statCard: { 
+    backgroundColor: '#ffffff', 
+    padding: '18px 20px', 
+    borderRadius: '16px', 
+    border: '1px solid #e2e8f0',
+    boxShadow: '0 4px 15px rgba(0, 0, 0, 0.04)',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '16px'
+  },
+  statIconWrap: {
+    width: '46px',
+    height: '46px',
+    borderRadius: '12px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  statLabel: { fontSize: '13px', color: '#64748b', fontWeight: '500', marginBottom: '4px' },
+  statValue: { fontSize: '26px', fontWeight: '700', color: '#0f172a', margin: 0 },
+  statBadge: {
+    fontSize: '11px',
+    fontWeight: '600',
+    padding: '2px 8px',
+    borderRadius: '20px',
+    display: 'inline-flex',
+    alignItems: 'center',
+    gap: '2px'
+  },
+
+  // Cards & Forms (Light Theme)
+  card: { 
+    backgroundColor: '#ffffff', 
+    borderRadius: '16px', 
+    border: '1px solid #e2e8f0', 
+    padding: '24px',
+    boxShadow: '0 4px 15px rgba(0, 0, 0, 0.04)',
+    marginBottom: '24px'
+  },
+  cardHeader: { marginBottom: '16px' },
+  cardHeaderTitle: { display: 'flex', alignItems: 'center', gap: '8px', fontSize: '16px', fontWeight: 'bold', color: '#0f172a' },
+  projectFormGrid: { display: 'flex', flexDirection: 'column', gap: '14px' },
+  input: { 
+    padding: '11px 16px', 
+    borderRadius: '10px', 
+    border: '1px solid #cbd5e1', 
+    fontSize: '14px',
+    backgroundColor: '#f8fafc',
+    color: '#0f172a',
+    outline: 'none',
+    boxSizing: 'border-box'
+  },
+  primaryBtn: { backgroundColor: '#2563eb', color: '#ffffff', border: 'none', padding: '11px 20px', borderRadius: '10px', cursor: 'pointer', fontWeight: '600', fontSize: '14px' },
+
+  // Projects Grid
+  sectionHeading: { margin: 0, fontSize: '18px', fontWeight: 'bold', color: '#0f172a' },
+  projectsLandscapeGrid: { display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(460px, 1fr))', gap: '20px', marginTop: '16px' },
+  projectCardLandscape: { 
+    backgroundColor: '#ffffff', 
+    borderRadius: '16px', 
+    border: '1px solid #e2e8f0',
+    padding: '20px',
+    boxShadow: '0 4px 15px rgba(0, 0, 0, 0.04)'
+  },
   // Analytics Grid
  // Analytics Grid - Modern Stat Cards
   statsGrid: { display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '16px', marginBottom: '24px' },
