@@ -645,7 +645,7 @@ export default function App() {
   );
 }
 const styles = {
-  // Layout Root - Modern Enterprise White SaaS Theme with College BG
+  // Layout Root - Clean SaaS White Theme with College BG
   layoutWrapper: { 
     display: 'flex', 
     minHeight: '100vh', 
@@ -657,7 +657,7 @@ const styles = {
     fontFamily: 'Inter, system-ui, -apple-system, sans-serif'
   },
 
-  // Sidebar - Perfectly Aligned Dark Slate
+  // Sidebar - Crisp Dark Slate
   sidebar: { 
     width: '260px', 
     backgroundColor: '#0f172a', 
@@ -684,7 +684,7 @@ const styles = {
     justifyContent: 'center',
     flexShrink: 0
   },
-  brandTitle: { margin: 0, fontSize: '16px', fontWeight: '700', color: '#f8fafc', letterSpacing: '-0.2px' },
+  brandTitle: { margin: 0, fontSize: '16px', fontWeight: '700', color: '#f8fafc' },
   brandSub: { fontSize: '11px', color: '#94a3b8', display: 'block', marginTop: '2px' },
   navMenu: { 
     marginTop: '20px', 
@@ -759,7 +759,7 @@ const styles = {
     width: '100%' 
   },
 
-  // Main Container & Top Header
+  // Main Container & Navbar
   mainContainer: { 
     flex: 1, 
     padding: '32px 40px', 
@@ -816,7 +816,7 @@ const styles = {
     fontWeight: '700' 
   },
 
-  // Top Metric Cards - SaaS Style
+  // Metric Cards
   statsGrid: { display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '16px', marginBottom: '24px' },
   statCard: { 
     backgroundColor: '#ffffff', 
@@ -849,7 +849,7 @@ const styles = {
     gap: '2px' 
   },
 
-  // Form Container & Inputs
+  // Forms & Containers
   card: { 
     backgroundColor: '#ffffff', 
     borderRadius: '16px', 
@@ -890,6 +890,7 @@ const styles = {
     borderRadius: '16px', 
     border: '1px solid #e2e8f0', 
     padding: '22px', 
-    boxShadow: '0 4px 14px rgba(15, 23, 42, 0.05)' 
+    boxShadow: '0 4px 14px rgba(15, 23, 42, 0.05)',
+    color: '#0f172a'
   }
 };
