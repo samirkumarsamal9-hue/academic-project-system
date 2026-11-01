@@ -383,25 +383,62 @@ export default function App() {
         {/* Global Analytics Cards in Landscape */}
         {(user.role === 'Admin' || user.role === 'Supervisor') && analytics && (
           <section style={styles.statsGrid}>
+            {/* Card 1: Total Projects */}
             <div style={styles.statCard}>
-              <span style={styles.statLabel}>Total Projects</span>
-              <div style={styles.statValue}>{analytics.totalProjects}</div>
-              <span style={styles.statFooter}>Assigned this term</span>
+              <div style={{ ...styles.statIconWrap, background: 'rgba(59, 130, 246, 0.15)', color: '#60a5fa' }}>
+                <FolderPlus size={22} />
+              </div>
+              <div style={{ flex: 1 }}>
+                <div style={styles.statLabel}>Total Projects</div>
+                <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
+                  <span style={styles.statValue}>{analytics?.totalProjects ?? projects.length}</span>
+                  <span style={{ ...styles.statBadge, background: 'rgba(59, 130, 246, 0.15)', color: '#60a5fa' }}>Active</span>
+                </div>
+              </div>
             </div>
+
+            {/* Card 2: In-Progress */}
             <div style={styles.statCard}>
-              <span style={styles.statLabel}>In-Progress</span>
-              <div style={{ ...styles.statValue, color: '#f59e0b' }}>{analytics.inProgressProjects}</div>
-              <span style={styles.statFooter}>Awaiting final sign-off</span>
+              <div style={{ ...styles.statIconWrap, background: 'rgba(245, 158, 11, 0.15)', color: '#fbbf24' }}>
+                <Clock size={22} />
+              </div>
+              <div style={{ flex: 1 }}>
+                <div style={styles.statLabel}>In-Progress</div>
+                <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
+                  <span style={styles.statValue}>{analytics?.inProgressProjects ?? projects.filter(p => p.status !== 'Completed').length}</span>
+                  <span style={{ ...styles.statBadge, background: 'rgba(245, 158, 11, 0.15)', color: '#fbbf24' }}>Pending</span>
+                </div>
+              </div>
             </div>
+
+            {/* Card 3: Completed */}
             <div style={styles.statCard}>
-              <span style={styles.statLabel}>Completed</span>
-              <div style={{ ...styles.statValue, color: '#10b981' }}>{analytics.completedProjects}</div>
-              <span style={styles.statFooter}>Successfully validated</span>
+              <div style={{ ...styles.statIconWrap, background: 'rgba(16, 185, 129, 0.15)', color: '#34d399' }}>
+                <CheckCircle2 size={22} />
+              </div>
+              <div style={{ flex: 1 }}>
+                <div style={styles.statLabel}>Completed</div>
+                <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
+                  <span style={styles.statValue}>{analytics?.completedProjects ?? projects.filter(p => p.status === 'Completed').length}</span>
+                  <span style={{ ...styles.statBadge, background: 'rgba(16, 185, 129, 0.15)', color: '#34d399' }}>Finished</span>
+                </div>
+              </div>
             </div>
+
+            {/* Card 4: Completion Rate */}
             <div style={styles.statCard}>
-              <span style={styles.statLabel}>Completion Rate</span>
-              <div style={{ ...styles.statValue, color: '#2563eb' }}>{analytics.completionRate}%</div>
-              <span style={styles.statFooter}>Class overall throughput</span>
+              <div style={{ ...styles.statIconWrap, background: 'rgba(168, 85, 247, 0.15)', color: '#c084fc' }}>
+                <UserCheck size={22} />
+              </div>
+              <div style={{ flex: 1 }}>
+                <div style={styles.statLabel}>Completion Rate</div>
+                <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
+                  <span style={styles.statValue}>
+                    {analytics?.completionRate ?? (projects.length > 0 ? Math.round((projects.filter(p => p.status === 'Completed').length / projects.length) * 100) : 0)}%
+                  </span>
+                  <span style={{ ...styles.statBadge, background: 'rgba(168, 85, 247, 0.15)', color: '#c084fc' }}>Overall</span>
+                </div>
+              </div>
             </div>
           </section>
         )}
