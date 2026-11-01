@@ -646,9 +646,16 @@ export default function App() {
 }
 const styles = {
   // Layout Root
-  layoutWrapper: { display: 'flex', minHeight: '100vh', backgroundColor: '#f8fafc', fontFamily: 'Inter, system-ui, -apple-system, sans-serif' },
-  sidebar: { width: '260px', backgroundColor: '#0f172a', color: '#fff', display: 'flex', flexDirection: 'column', padding: '24px 16px', flexShrink: 0 },
-  brandBox: { display: 'flex', alignItems: 'center', gap: '12px', paddingBottom: '24px', borderBottom: '1px solid #1e293b' },
+layoutWrapper: { 
+    display: 'flex', 
+minHeight: '100vh',
+    backgroundImage: 'linear-gradient(rgba(241, 245, 249, 0.88), rgba(241, 245, 249, 0.92)), url("/Mitm.jpg")',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundAttachment: 'fixed',
+    fontFamily: 'Inter, sans-serif'
+  },
+  sidebar: { width: '260px', backgroundColor: '#0f172a', color: '#fff', display: 'flex', flexDirection: 'column',  brandBox: { display: 'flex', alignItems: 'center', gap: '12px', paddingBottom: '24px', borderBottom: '1px solid #1e293b' },
   brandIcon: { backgroundColor: '#2563eb', padding: '8px', borderRadius: '8px', display: 'flex' },
   brandTitle: { margin: 0, fontSize: '16px', fontWeight: 'bold', color: '#f8fafc' },
   brandSub: { fontSize: '11px', color: '#94a3b8' },
@@ -663,13 +670,13 @@ const styles = {
   sidebarLogoutBtn: { display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', backgroundColor: '#1e293b', color: '#ef4444', border: '1px solid #334155', padding: '8px', borderRadius: '6px', cursor: 'pointer', fontSize: '12px', fontWeight: '600' },
 
   /// Main Container - Soft White Glass Overlay with College BG visible
-  mainContainer: { 
-    flex: 1, 
-    padding: '32px 40px', 
+  mainContainer: {
+    flex: 1,
+    padding: '32px 40px',
     overflowY: 'auto',
-    backgroundColor: 'rgba(248, 250, 252, 0.88)', 
-    backdropFilter: 'blur(10px)',
-    WebkitBackdropFilter: 'blur(10px)',
+    backgroundColor: 'transparent',
+    minHeight: '100vh'
+  },
     minHeight: '100vh'
   },
   topNavbar: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' },
