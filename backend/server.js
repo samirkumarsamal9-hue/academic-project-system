@@ -252,7 +252,42 @@ app.get('/api/v1/analytics', authenticateToken, authorizeRoles('Admin', 'Supervi
     res.status(500).json({ error: error.message });
   }
 });
+// --- Profile Update & Password Change Routes ---
+app.put('/api/v1/profile/update', authenticateToken, async (req, res) => {
+  try {
+    const { name, department } = req.body;
+    const updatedUser = await User.findByIdAndUpdate(
+      req.user.id || req.user._id,
+      { $set: { name, department } },
+      { new: true }
+    ).select('-password');
 
+    res.json({ success: true, message: 'Profile details updated', user: updatedUser });
+  } catch (err) {
+    res.status(500).json({ success: false, message: err.message });
+  }
+});
+
+app.put('/api/v1/profile/change-password', authenticateToken, async (req, res) => {
+  try {
+    const { currentPassword, newPassword } = req.body;
+    const user = await User.findById(req.user.id || req.user._id);
+    if (!user) return res.status(404).json({ success: false, message: 'User not found' });
+
+    const isMatch = await bcrypt.compare(currentPassword, user.password);
+    if (!isMatch) {
+      return res.status(400).json({ success: false, message: 'Current password is incorrect' });
+    }
+
+    const salt = await bcrypt.genSalt(10);
+    user.password = await bcrypt.hash(newPassword, salt);
+    await user.save();
+
+    res.json({ success: true, message: 'Password changed successfully' });
+  } catch (err) {
+    res.status(500).json({ success: false, message: err.message });
+  }
+});
 const PORT = process.env.PORT || 4000;
 server.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

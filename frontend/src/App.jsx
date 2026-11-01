@@ -1,3 +1,4 @@
+import AccountModal from './AccountModal';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { io } from 'socket.io-client';
@@ -19,6 +20,7 @@ import {
 const API_BASE = 'https://academic-project-system.onrender.com/api/v1';
 
 export default function App() {
+  const [showAccountModal, setShowAccountModal] = useState(false);
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(localStorage.getItem('token') || '');
   const [authMode, setAuthMode] = useState('login');
@@ -332,6 +334,12 @@ export default function App() {
               <div style={styles.userRoleTag}>{user.role}</div>
             </div>
           </div>
+          <button 
+  onClick={() => setShowAccountModal(true)} 
+  style={{ ...styles.sidebarLogoutBtn, marginBottom: '8px', background: 'rgba(255, 255, 255, 0.06)' }}
+>
+  ⚙️ Account Settings
+</button>
           <button onClick={handleLogout} style={styles.sidebarLogoutBtn}>
             <LogOut size={16} /> Logout
           </button>
@@ -573,6 +581,15 @@ export default function App() {
         </main>
       </div>
     </div>
+    {showAccountModal && (
+        <AccountModal 
+          user={user} 
+          token={token} 
+          API_BASE={API_BASE} 
+          onClose={() => setShowAccountModal(false)}
+          onUserUpdated={(updated) => setUser(updated)}
+        />
+      )}
   );
 }
 
