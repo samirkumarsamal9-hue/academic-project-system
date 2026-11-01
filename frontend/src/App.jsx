@@ -496,140 +496,125 @@ export default function App() {
         )}
 
         {/* Projects Landscape Grid */}
-        <main style={{ marginTop: '24px' }}>
+        <main style={{ marginTop: '28px' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-            <h2 style={styles.sectionHeading}>
-              {user.role === 'Student' ? 'My Assigned Capstone' : 'Active Projects & Timeline'}
-            </h2>
-            <span style={{ fontSize: '13px', color: '#64748b' }}>Showing {projects.length} project(s)</span>
+            <div>
+              <h2 style={{ fontSize: '20px', fontWeight: '800', color: '#0f172a', margin: 0 }}>
+                {user.role === 'Student' ? 'My Assigned Capstone' : 'Active Projects & Timeline'}
+              </h2>
+              <p style={{ margin: '4px 0 0', fontSize: '13px', color: '#475569', fontWeight: '500' }}>
+                Monitor deliverables, assigned students, and milestone progress
+              </p>
+            </div>
+            <span style={{ fontSize: '12px', fontWeight: '600', color: '#334155', backgroundColor: '#e2e8f0', padding: '4px 12px', borderRadius: '16px' }}>
+              Showing {projects?.length || 0} project(s)
+            </span>
           </div>
 
-          {projects.length === 0 ? (
-            <div style={styles.emptyState}>No projects currently assigned to this account.</div>
-          ) : (
-            <div style={styles.projectsLandscapeGrid}>
-              {projects.map((proj) => (
-                <div key={proj._id} style={styles.projectCardLandscape}>
-                  {/* Card Header */}
-                  <div style={styles.projectCardTop}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(460px, 1fr))', gap: '20px', marginTop: '16px' }}>
+            {projects && projects.length > 0 ? (
+              projects.map((p) => (
+                <div 
+                  key={p._id} 
+                  style={{
+                    backgroundColor: '#ffffff',
+                    borderRadius: '16px',
+                    border: '1px solid #e2e8f0',
+                    padding: '24px',
+                    boxShadow: '0 4px 16px rgba(15, 23, 42, 0.04)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '14px'
+                  }}
+                >
+                  {/* Project Header */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '12px' }}>
                     <div>
-                      <h3 style={styles.projectTitle}>{proj.title}</h3>
-                      <p style={styles.projectDesc}>{proj.description || 'No description provided.'}</p>
+                      <h3 style={{ margin: 0, fontSize: '17px', fontWeight: '700', color: '#0f172a' }}>{p.title}</h3>
+                      <p style={{ margin: '4px 0 0', fontSize: '13px', color: '#475569' }}>
+                        {p.description || 'Milestone tracking and review management system.'}
+                      </p>
                     </div>
-                    <span style={proj.status === 'Completed' ? styles.statusTagCompleted : styles.statusTagActive}>
-                      {proj.status}
+                    <span style={{
+                      fontSize: '11px',
+                      fontWeight: '700',
+                      padding: '4px 10px',
+                      borderRadius: '20px',
+                      backgroundColor: p.status === 'Completed' ? '#dcfce7' : '#fef3c7',
+                      color: p.status === 'Completed' ? '#166534' : '#92400e',
+                      whiteSpace: 'nowrap'
+                    }}>
+                      {p.status || 'In-Progress'}
                     </span>
                   </div>
 
-                  {/* Members Information Badges */}
-                  <div style={styles.membersStrip}>
-                    <div style={styles.memberChip}>
-                      <span style={styles.chipLabel}>Student:</span>
-                      <strong>{proj.studentGroup?.map((s) => s.name).join(', ') || 'Unassigned'}</strong>
+                  {/* Student & Supervisor Badge Bar */}
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', padding: '10px 14px', backgroundColor: '#f8fafc', borderRadius: '10px', border: '1px solid #e2e8f0' }}>
+                    <div style={{ fontSize: '12px' }}>
+                      <span style={{ color: '#64748b', display: 'block', fontSize: '11px', textTransform: 'uppercase', fontWeight: '600' }}>Student</span>
+                      <strong style={{ color: '#0f172a' }}>{p.studentName || 'Unassigned'}</strong>
                     </div>
-                    <div style={styles.memberChip}>
-                      <span style={styles.chipLabel}>Supervisor:</span>
-                      <strong>{proj.supervisor?.name || 'Unassigned'}</strong>
+                    <div style={{ fontSize: '12px' }}>
+                      <span style={{ color: '#64748b', display: 'block', fontSize: '11px', textTransform: 'uppercase', fontWeight: '600' }}>Supervisor</span>
+                      <strong style={{ color: '#0f172a' }}>{p.supervisorName || 'Unassigned'}</strong>
                     </div>
                   </div>
 
-                  {/* Add Milestone Form for Admin & Supervisor */}
-                  {(user.role === 'Admin' || user.role === 'Supervisor') && (
-                    <div style={styles.addMilestoneBox}>
-                      <span style={styles.milestoneBoxTitle}>
-                        <PlusCircle size={14} color="#2563eb" /> Add Milestone / Deadline:
-                      </span>
-                      <div style={styles.milestoneInputRow}>
-                        <input
-                          style={{ ...styles.smallInput, flex: 2 }}
-                          placeholder="e.g. SRS Submission, Design Architecture"
-                          value={milestoneInputs[proj._id]?.title || ''}
-                          onChange={(e) =>
-                            setMilestoneInputs({
-                              ...milestoneInputs,
-                              [proj._id]: { ...milestoneInputs[proj._id], title: e.target.value }
-                            })
-                          }
-                        />
-                        <input
-                          type="date"
-                          style={{ ...styles.smallInput, flex: 1 }}
-                          value={milestoneInputs[proj._id]?.deadline || ''}
-                          onChange={(e) =>
-                            setMilestoneInputs({
-                              ...milestoneInputs,
-                              [proj._id]: { ...milestoneInputs[proj._id], deadline: e.target.value }
-                            })
-                          }
-                        />
-                        <button onClick={() => addMilestone(proj._id)} style={styles.smallBtn}>
-                          Add
-                        </button>
-                      </div>
-                    </div>
-                  )}
+                  {/* Add Milestone Inline Bar */}
+                  <div style={{ padding: '12px 14px', backgroundColor: '#f8fafc', borderRadius: '10px', border: '1px solid #e2e8f0' }}>
+                    <span style={{ fontSize: '12px', fontWeight: '700', color: '#334155', display: 'block', marginBottom: '8px' }}>
+                      + Add Milestone / Deadline:
+                    </span>
+                    <form onSubmit={(e) => handleAddMilestone(e, p._id)} style={{ display: 'flex', gap: '8px' }}>
+                      <input 
+                        type="text" 
+                        placeholder="e.g. SRS Submission, Design Architecture" 
+                        value={milestoneInputs[p._id]?.title || ''} 
+                        onChange={(e) => handleMilestoneChange(p._id, 'title', e.target.value)}
+                        style={{ flex: 2, padding: '8px 12px', fontSize: '13px', borderRadius: '8px', border: '1px solid #cbd5e1', backgroundColor: '#ffffff', color: '#0f172a', outline: 'none' }}
+                      />
+                      <input 
+                        type="date" 
+                        value={milestoneInputs[p._id]?.deadline || ''} 
+                        onChange={(e) => handleMilestoneChange(p._id, 'deadline', e.target.value)}
+                        style={{ flex: 1, padding: '8px 10px', fontSize: '13px', borderRadius: '8px', border: '1px solid #cbd5e1', backgroundColor: '#ffffff', color: '#0f172a', outline: 'none' }}
+                      />
+                      <button type="submit" style={{ backgroundColor: '#2563eb', color: '#ffffff', border: 'none', padding: '8px 16px', borderRadius: '8px', fontSize: '13px', fontWeight: '600', cursor: 'pointer' }}>
+                        Add
+                      </button>
+                    </form>
+                  </div>
 
-                  {/* Milestones Listing */}
-                  <div style={{ marginTop: '16px' }}>
-                    <h4 style={styles.milestonesSubheading}>Assigned Milestones & Reviews</h4>
-                    {proj.milestones && proj.milestones.length > 0 ? (
-                      <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                        {proj.milestones.map((m) => (
-                          <div key={m._id} style={styles.milestoneItem}>
-                            <div style={{ flex: 1 }}>
-                              <div style={styles.milestoneHeaderRow}>
-                                <span style={styles.milestoneTitleText}>{m.title}</span>
-                                <span style={m.status === 'Approved' ? styles.badgeApproved : styles.badgePending}>
-                                  {m.status}
-                                </span>
-                              </div>
-                              <div style={styles.milestoneMeta}>
-                                <span>Due: {new Date(m.deadline).toLocaleDateString()}</span>
-                                {m.uploadedFileUrl && (
-                                  <a href={m.uploadedFileUrl} target="_blank" rel="noreferrer" style={styles.submissionLink}>
-                                    <ExternalLink size={12} /> View Submission
-                                  </a>
-                                )}
-                              </div>
+                  {/* Milestones & Review List */}
+                  <div>
+                    <span style={{ fontSize: '11px', fontWeight: '700', color: '#475569', textTransform: 'uppercase', letterSpacing: '0.5px', display: 'block', marginBottom: '8px' }}>
+                      Assigned Milestones & Reviews
+                    </span>
+                    {p.milestones && p.milestones.length > 0 ? (
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                        {p.milestones.map((m, idx) => (
+                          <div key={idx} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 14px', backgroundColor: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px' }}>
+                            <div>
+                              <div style={{ fontSize: '13px', fontWeight: '600', color: '#0f172a' }}>{m.title}</div>
+                              <div style={{ fontSize: '11px', color: '#64748b', marginTop: '2px' }}>Due: {new Date(m.deadline).toLocaleDateString()}</div>
                             </div>
-
-                            {/* Student Action: Submission Link */}
-                            {user.role === 'Student' && m.status !== 'Approved' && (
-                              <div style={styles.studentSubmitGroup}>
-                                <input
-                                  style={styles.smallInput}
-                                  placeholder="Submission URL (Drive / GitHub)"
-                                  value={submissionUrls[m._id] || ''}
-                                  onChange={(e) => setSubmissionUrls({ ...submissionUrls, [m._id]: e.target.value })}
-                                />
-                                <button onClick={() => submitMilestone(m._id)} style={styles.smallBtn}>
-                                  <Send size={13} /> Submit
-                                </button>
-                              </div>
-                            )}
-
-                            {/* Supervisor / Admin Action: Approve / Revision */}
-                            {(user.role === 'Supervisor' || user.role === 'Admin') && (
-                              <div style={{ display: 'flex', gap: '6px' }}>
-                                <button onClick={() => reviewMilestone(m._id, 'Approved')} style={styles.approveBtn}>
-                                  Approve
-                                </button>
-                                <button onClick={() => reviewMilestone(m._id, 'Needs Revision')} style={styles.rejectBtn}>
-                                  Revision
-                                </button>
-                              </div>
-                            )}
+                            <div style={{ display: 'flex', gap: '8px' }}>
+                              <button type="button" onClick={() => handleReviewMilestone(p._id, m._id, 'Approved')} style={{ backgroundColor: '#10b981', color: '#fff', border: 'none', padding: '5px 12px', borderRadius: '6px', fontSize: '12px', fontWeight: '600', cursor: 'pointer' }}>Approve</button>
+                              <button type="button" onClick={() => handleReviewMilestone(p._id, m._id, 'Revision')} style={{ backgroundColor: '#ef4444', color: '#fff', border: 'none', padding: '5px 12px', borderRadius: '6px', fontSize: '12px', fontWeight: '600', cursor: 'pointer' }}>Revision</button>
+                            </div>
                           </div>
                         ))}
                       </div>
                     ) : (
-                      <p style={styles.noMilestonesText}>No milestones added yet.</p>
+                      <div style={{ fontSize: '12px', color: '#94a3b8', fontStyle: 'italic', padding: '4px 0' }}>No milestones added yet.</div>
                     )}
                   </div>
                 </div>
-              ))}
-            </div>
-          )}
+              ))
+            ) : (
+              <div style={{ color: '#64748b', fontSize: '14px' }}>No projects available.</div>
+            )}
+          </div>
         </main>
      {showAccountModal && (
         <AccountModal 
