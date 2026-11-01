@@ -635,46 +635,61 @@ const styles = {
   notifBadge: { position: 'absolute', top: -3, right: -3, backgroundColor: '#ef4444', color: '#fff', fontSize: '10px', width: '16px', height: '16px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' },
 
   // Analytics Grid
- // Analytics Grid
-  statsGrid: { display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '20px', marginBottom: '28px' },
+ // Analytics Grid - Modern Stat Cards
+  statsGrid: { display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '16px', marginBottom: '24px' },
   statCard: { 
-    backgroundColor: 'rgba(15, 23, 42, 0.65)', 
-    backdropFilter: 'blur(12px)',
-    WebkitBackdropFilter: 'blur(12px)',
-    padding: '20px', 
-    borderRadius: '12px', 
+    backgroundColor: '#111827', 
+    padding: '18px 20px', 
+    borderRadius: '16px', 
     border: '1px solid rgba(255, 255, 255, 0.08)',
-    boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.37)'
+    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.25)',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '16px'
   },
-  statLabel: { fontSize: '13px', color: '#94a3b8', fontWeight: '500' },
-  statValue: { fontSize: '28px', fontWeight: 'bold', margin: '8px 0 4px 0', color: '#f8fafc' },
-  statFooter: { fontSize: '12px', color: '#64748b' },
+  statIconWrap: {
+    width: '46px',
+    height: '46px',
+    borderRadius: '12px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  statLabel: { fontSize: '13px', color: '#94a3b8', fontWeight: '500', marginBottom: '4px' },
+  statValue: { fontSize: '26px', fontWeight: '700', color: '#f8fafc', margin: 0 },
+  statBadge: {
+    fontSize: '11px',
+    fontWeight: '600',
+    padding: '2px 8px',
+    borderRadius: '20px',
+    display: 'inline-flex',
+    alignItems: 'center',
+    gap: '2px'
+  },
 
   // Cards & Forms
   card: { 
-    backgroundColor: 'rgba(15, 23, 42, 0.65)', 
-    backdropFilter: 'blur(12px)',
-    WebkitBackdropFilter: 'blur(12px)',
-    borderRadius: '12px', 
+    backgroundColor: '#111827', 
+    borderRadius: '16px', 
     border: '1px solid rgba(255, 255, 255, 0.08)', 
-    padding: '24px',
-    boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.37)'
+    padding: '22px',
+    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.25)',
+    marginBottom: '24px'
   },
   cardHeader: { marginBottom: '16px' },
   cardHeaderTitle: { display: 'flex', alignItems: 'center', gap: '8px', fontSize: '16px', fontWeight: 'bold', color: '#f8fafc' },
   projectFormGrid: { display: 'flex', flexDirection: 'column', gap: '14px' },
   input: { 
-    padding: '10px 14px', 
-    borderRadius: '8px', 
-    border: '1px solid rgba(255, 255, 255, 0.15)', 
+    padding: '11px 16px', 
+    borderRadius: '10px', 
+    border: '1px solid rgba(255, 255, 255, 0.12)', 
     fontSize: '14px',
-    backgroundColor: 'rgba(15, 23, 42, 0.85)',
+    backgroundColor: '#1a2234',
     color: '#f8fafc',
     outline: 'none',
     boxSizing: 'border-box'
   },
-  primaryBtn: { backgroundColor: '#2563eb', color: '#fff', border: 'none', padding: '10px 18px', borderRadius: '8px', cursor: 'pointer', fontWeight: '600' },
-
+  primaryBtn: { backgroundColor: '#2563eb', color: '#fff', border: 'none', padding: '11px 20px', borderRadius: '10px', cursor: 'pointer', fontWeight: '600', fontSize: '14px' },
   // Projects Grid
   sectionHeading: { margin: 0, fontSize: '18px', fontWeight: 'bold', color: '#f8fafc' },
   projectsLandscapeGrid: { display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(480px, 1fr))', gap: '20px', marginTop: '16px' },
