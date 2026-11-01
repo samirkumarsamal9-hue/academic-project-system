@@ -579,9 +579,7 @@ export default function App() {
             </div>
           )}
         </main>
-      </div>
-    </div>
-    {showAccountModal && (
+     {showAccountModal && (
         <AccountModal 
           user={user} 
           token={token} 
@@ -589,10 +587,11 @@ export default function App() {
           onClose={() => setShowAccountModal(false)}
           onUserUpdated={(updated) => setUser(updated)}
         />
-      )}
+    )}
+    </div>
+  </div>
   );
 }
-
 const styles = {
   // Layout Root
   layoutWrapper: { display: 'flex', minHeight: '100vh', backgroundColor: '#f8fafc', fontFamily: 'Inter, system-ui, -apple-system, sans-serif' },
