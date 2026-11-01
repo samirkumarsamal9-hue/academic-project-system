@@ -217,7 +217,11 @@ textarea:focus {
 
 /* Dropdown Options */
 select option {
-  background-color: #0f172a;/* SaaS Light Theme Force Override */
+  background-color: #ffffff;
+  color: #0f172a;
+}
+
+/* SaaS Light Theme Force Override */
 body {
   background-color: #f1f5f9 !important;
   color: #0f172a !important;
@@ -240,54 +244,4 @@ div[style*="pageSubtitle"],
 div[style*="statValue"],
 span[style*="statLabel"] {
   color: #0f172a !important;
-}
-  color: #f8fafc;
-}
-/* Universal Light SaaS Background & Container Override */
-div[style*="background"],
-section[style*="background"],
-form[style*="background"] {
-  background-color: #ffffff !important;
-  color: #0f172a !important;
-  border-color: #e2e8f0 !important;
-}
-
-/* Base App Layout Background with College Photo */
-div#root,
-div#root > div:first-child {
-  background-color: #f1f5f9 !important;
-  background-image: linear-gradient(rgba(241, 245, 249, 0.86), rgba(241, 245, 249, 0.90)), url("/Mitm.jpg") !important;
-  background-size: cover !important;
-  background-attachment: fixed !important;
-}
-
-/* Keep Sidebar Dark */
-aside,
-aside div,
-aside nav,
-aside span,
-aside h2 {
-  background-color: transparent !important;
-  color: #f8fafc !important;
-}
-aside {
-  background-color: #0f172a !important;
-}
-aside div[style*="brandIcon"],
-aside div[style*="navItemActive"],
-aside div[style*="avatarLetter"] {
-  background-color: #2563eb !important;
-}
-
-/* Force All Inner Text to High-Contrast Dark */
-main p,
-main span,
-main div,
-main h1,
-main h2,
-main h3 {
-  color: #0f172a !important;
-}
-main span[style*="statLabel"] {
-  color: #64748b !important;
 }
