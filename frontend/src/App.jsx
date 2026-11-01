@@ -16,7 +16,7 @@ import {
   UserCheck
 } from 'lucide-react';
 
-const API_BASE = 'http://localhost:4000/api/v1';
+const API_BASE = 'https://academic-project-system.onrender.com/api/v1';
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -68,7 +68,7 @@ export default function App() {
       fetchUsers();
     }
 
-    const socket = io('http://localhost:4000');
+    const socket = io('https://academic-project-system.onrender.com/');
     socket.emit('join_room', user.id);
 
     socket.on('notification_receive', (notification) => {
