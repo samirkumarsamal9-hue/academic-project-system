@@ -334,9 +334,24 @@ export default function App() {
               <div style={styles.userRoleTag}>{user.role}</div>
             </div>
           </div>
-          <button 
+         <button 
   onClick={() => setShowAccountModal(true)} 
-  style={{ ...styles.sidebarLogoutBtn, marginBottom: '8px', background: 'rgba(255, 255, 255, 0.06)' }}
+  style={{
+    ...styles.sidebarLogoutBtn,
+    marginBottom: '8px',
+    background: 'rgba(255, 255, 255, 0.05)',
+    border: '1px solid rgba(255, 255, 255, 0.12)',
+    color: '#e2e8f0',
+    borderRadius: '8px',
+    padding: '8px 12px',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '8px',
+    cursor: 'pointer',
+    width: '100%',
+    fontSize: '13px',
+    fontWeight: '500'
+  }}
 >
   ⚙️ Account Settings
 </button>
