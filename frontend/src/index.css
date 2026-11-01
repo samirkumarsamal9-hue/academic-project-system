@@ -45,18 +45,14 @@ html, body, #root {
 .btn-primary:hover {
   background-color: #1e40af !important;
 }
-/* Login screen wrapper ko transparent karke image dikhana */
-.auth-wrapper, 
-.login-container,
-div[style*="min-height: 100vh"],
-div[style*="minHeight: '100vh'"] {
+/* Login screen wrapper - Sirf Auth pages ke liye */
+.auth-wrapper,
+.login-container {
   background: transparent !important;
 }
 
-/* White card ko modern institutional card banana */
-.auth-card,
-div[style*="border-radius"],
-div[style*="borderRadius"] {
+/* Auth Cards - Dashboard ke cards ko disturb na kare */
+.auth-card {
   background: rgba(15, 23, 42, 0.85) !important;
   backdrop-filter: blur(12px) !important;
   -webkit-backdrop-filter: blur(12px) !important;
