@@ -635,24 +635,57 @@ const styles = {
   notifBadge: { position: 'absolute', top: -3, right: -3, backgroundColor: '#ef4444', color: '#fff', fontSize: '10px', width: '16px', height: '16px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' },
 
   // Analytics Grid
+ // Analytics Grid
   statsGrid: { display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '20px', marginBottom: '28px' },
-  statCard: { backgroundColor: '#fff', padding: '20px', borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: '0 1px 3px rgba(0,0,0,0.04)' },
-  statLabel: { fontSize: '13px', color: '#64748b', fontWeight: '500' },
-  statValue: { fontSize: '28px', fontWeight: 'bold', margin: '8px 0 4px 0', color: '#0f172a' },
-  statFooter: { fontSize: '12px', color: '#94a3b8' },
+  statCard: { 
+    backgroundColor: 'rgba(15, 23, 42, 0.65)', 
+    backdropFilter: 'blur(12px)',
+    WebkitBackdropFilter: 'blur(12px)',
+    padding: '20px', 
+    borderRadius: '12px', 
+    border: '1px solid rgba(255, 255, 255, 0.08)',
+    boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.37)'
+  },
+  statLabel: { fontSize: '13px', color: '#94a3b8', fontWeight: '500' },
+  statValue: { fontSize: '28px', fontWeight: 'bold', margin: '8px 0 4px 0', color: '#f8fafc' },
+  statFooter: { fontSize: '12px', color: '#64748b' },
 
   // Cards & Forms
-  card: { backgroundColor: '#fff', borderRadius: '12px', border: '1px solid #e2e8f0', padding: '24px', boxShadow: '0 1px 3px rgba(0,0,0,0.04)', marginBottom: '28px' },
+  card: { 
+    backgroundColor: 'rgba(15, 23, 42, 0.65)', 
+    backdropFilter: 'blur(12px)',
+    WebkitBackdropFilter: 'blur(12px)',
+    borderRadius: '12px', 
+    border: '1px solid rgba(255, 255, 255, 0.08)', 
+    padding: '24px',
+    boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.37)'
+  },
   cardHeader: { marginBottom: '16px' },
-  cardHeaderTitle: { display: 'flex', alignItems: 'center', gap: '8px', fontSize: '16px', fontWeight: '600', color: '#0f172a' },
+  cardHeaderTitle: { display: 'flex', alignItems: 'center', gap: '8px', fontSize: '16px', fontWeight: 'bold', color: '#f8fafc' },
   projectFormGrid: { display: 'flex', flexDirection: 'column', gap: '14px' },
-  input: { padding: '10px 14px', borderRadius: '8px', border: '1px solid #cbd5e1', fontSize: '14px', outline: 'none' },
-  primaryBtn: { backgroundColor: '#2563eb', color: '#fff', border: 'none', padding: '10px 20px', borderRadius: '8px', fontWeight: '600', cursor: 'pointer', fontSize: '14px' },
+  input: { 
+    padding: '10px 14px', 
+    borderRadius: '8px', 
+    border: '1px solid rgba(255, 255, 255, 0.15)', 
+    fontSize: '14px',
+    backgroundColor: 'rgba(15, 23, 42, 0.85)',
+    color: '#f8fafc',
+    outline: 'none',
+    boxSizing: 'border-box'
+  },
+  primaryBtn: { backgroundColor: '#2563eb', color: '#fff', border: 'none', padding: '10px 18px', borderRadius: '8px', cursor: 'pointer', fontWeight: '600' },
 
   // Projects Grid
-  sectionHeading: { margin: 0, fontSize: '18px', fontWeight: 'bold', color: '#0f172a' },
-  projectsLandscapeGrid: { display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(480px, 1fr))', gap: '24px' },
-  projectCardLandscape: { backgroundColor: '#fff', borderRadius: '12px', border: '1px solid #e2e8f0', padding: '20px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', boxShadow: '0 2px 4px rgba(0,0,0,0.03)' },
+  sectionHeading: { margin: 0, fontSize: '18px', fontWeight: 'bold', color: '#f8fafc' },
+  projectsLandscapeGrid: { display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(480px, 1fr))', gap: '20px', marginTop: '16px' },
+  projectCardLandscape: { 
+    backgroundColor: 'rgba(15, 23, 42, 0.65)', 
+    backdropFilter: 'blur(12px)',
+    WebkitBackdropFilter: 'blur(12px)',
+    borderRadius: '12px', 
+    border: '1px solid rgba(255, 255, 255, 0.08)',
+    boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.37)'
+  },
   projectCardTop: { display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' },
   projectTitle: { margin: 0, fontSize: '17px', fontWeight: 'bold', color: '#0f172a' },
   projectDesc: { margin: '6px 0 0 0', fontSize: '13px', color: '#64748b' },
