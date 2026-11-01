@@ -245,3 +245,59 @@ div[style*="statValue"],
 span[style*="statLabel"] {
   color: #0f172a !important;
 }
+/* --- High Contrast SaaS Typography --- */
+main p,
+main span,
+main h1,
+main h2,
+main h3,
+main h4,
+main label {
+  color: #0f172a !important;
+}
+
+/* Muted Subtitles & Counts */
+main div[style*="pageSubtitle"],
+p[style*="pageSubtitle"],
+span[style*="brandSub"] {
+  color: #475569 !important;
+  font-weight: 500 !important;
+}
+
+/* Secondary meta labels (Student, Supervisor, Due dates) */
+main span, main p {
+  color: #334155;
+}
+
+/* Form Dropdowns & Inputs */
+main select,
+main input[type="text"],
+main input[type="date"] {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border: 1px solid #cbd5e1 !important;
+}
+
+main select option {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+}
+
+/* --- Clean Landscape Project Cards & Tables --- */
+div[style*="projectCardLandscape"],
+div[style*="card"] {
+  background-color: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 14px !important;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.05) !important;
+}
+
+/* Milestone Action Rows & Badges */
+div[style*="borderTop"],
+div[style*="display: flex"] {
+  color: #0f172a;
+}
+
+button {
+  font-family: inherit;
+}
