@@ -217,6 +217,29 @@ textarea:focus {
 
 /* Dropdown Options */
 select option {
-  background-color: #0f172a;
+  background-color: #0f172a;/* SaaS Light Theme Force Override */
+body {
+  background-color: #f1f5f9 !important;
+  color: #0f172a !important;
+}
+
+/* Force Light Containers & Cards */
+div[style*="statCard"],
+div[style*="card"],
+section[style*="statsGrid"] > div,
+div[style*="projectCardLandscape"] {
+  background-color: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.05) !important;
+}
+
+/* Force Headings and Stat Values to Dark */
+h1, h2, h3, h4,
+div[style*="pageTitle"],
+div[style*="pageSubtitle"],
+div[style*="statValue"],
+span[style*="statLabel"] {
+  color: #0f172a !important;
+}
   color: #f8fafc;
 }
