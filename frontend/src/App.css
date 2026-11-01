@@ -301,3 +301,97 @@ div[style*="display: flex"] {
 button {
   font-family: inherit;
 }
+/* --- 1. Fix Invisible Headings & Section Labels --- */
+h1, h2, h3, h4,
+div[style*="sectionHeading"],
+h3[style*="sectionHeading"] {
+  color: #0f172a !important;
+  font-weight: 700 !important;
+}
+
+/* Force "Active Projects & Timeline" visible */
+div:has(> [style*="projectCardLandscape"]),
+main > div > div {
+  color: #0f172a !important;
+}
+
+/* Muted Meta Info like 'Showing 2 project(s)' */
+main span, main p, main label {
+  color: #334155 !important;
+}
+
+/* --- 2. Clean SaaS Project Card Inner Structure --- */
+/* Milestone Add Input Row */
+main form, 
+div[style*="projectCardLandscape"] form,
+div[style*="projectCardLandscape"] > div {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  align-items: center !important;
+  margin-top: 10px !important;
+}
+
+/* Milestone text and date inputs */
+div[style*="projectCardLandscape"] input[type="text"] {
+  flex: 2 !important;
+  min-width: 180px !important;
+  padding: 8px 12px !important;
+  border: 1px solid #cbd5e1 !important;
+  border-radius: 8px !important;
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+}
+
+div[style*="projectCardLandscape"] input[type="date"] {
+  flex: 1 !important;
+  min-width: 130px !important;
+  padding: 8px 10px !important;
+  border: 1px solid #cbd5e1 !important;
+  border-radius: 8px !important;
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+}
+
+/* Add Milestone Button */
+div[style*="projectCardLandscape"] button:has(+ *),
+div[style*="projectCardLandscape"] form button {
+  background-color: #2563eb !important;
+  color: #ffffff !important;
+  padding: 8px 14px !important;
+  border-radius: 8px !important;
+  border: none !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+}
+
+/* --- 3. Assigned Milestones & Review List Row --- */
+div[style*="projectCardLandscape"] ul,
+div[style*="projectCardLandscape"] .milestone-list {
+  padding: 0 !important;
+  list-style: none !important;
+  margin-top: 12px !important;
+}
+
+/* Milestone Item Badge / Card */
+div[style*="projectCardLandscape"] li,
+div[style*="projectCardLandscape"] div[style*="borderTop"] {
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 8px !important;
+  padding: 10px 14px !important;
+  margin-top: 8px !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
+
+/* Approve / Revision Action Buttons */
+div[style*="projectCardLandscape"] button {
+  padding: 6px 12px !important;
+  border-radius: 6px !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+}
