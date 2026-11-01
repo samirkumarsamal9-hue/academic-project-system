@@ -645,214 +645,251 @@ export default function App() {
   );
 }
 const styles = {
-  // Layout Root
-layoutWrapper: { 
+  // Layout Root - Modern Enterprise White SaaS Theme with College BG
+  layoutWrapper: { 
     display: 'flex', 
-minHeight: '100vh',
-    backgroundImage: 'linear-gradient(rgba(241, 245, 249, 0.88), rgba(241, 245, 249, 0.92)), url("/Mitm.jpg")',
+    minHeight: '100vh', 
+    backgroundColor: '#f1f5f9',
+    backgroundImage: 'linear-gradient(rgba(241, 245, 249, 0.86), rgba(241, 245, 249, 0.90)), url("/Mitm.jpg")',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     backgroundAttachment: 'fixed',
-    fontFamily: 'Inter, sans-serif'
+    fontFamily: 'Inter, system-ui, -apple-system, sans-serif'
   },
-  sidebar: { width: '260px', backgroundColor: '#0f172a', color: '#fff', display: 'flex', flexDirection: 'column',  brandBox: { display: 'flex', alignItems: 'center', gap: '12px', paddingBottom: '24px', borderBottom: '1px solid #1e293b' },
-  brandIcon: { backgroundColor: '#2563eb', padding: '8px', borderRadius: '8px', display: 'flex' },
-  brandTitle: { margin: 0, fontSize: '16px', fontWeight: 'bold', color: '#f8fafc' },
-  brandSub: { fontSize: '11px', color: '#94a3b8' },
-  navMenu: { marginTop: '24px', display: 'flex', flexDirection: 'column', gap: '8px', flex: 1 },
-  navItemActive: { display: 'flex', alignItems: 'center', gap: '10px', padding: '10px 14px', borderRadius: '8px', backgroundColor: '#1e293b', color: '#38bdf8', fontWeight: '600', fontSize: '14px', cursor: 'pointer' },
-  navItem: { display: 'flex', alignItems: 'center', gap: '10px', padding: '10px 14px', borderRadius: '8px', color: '#94a3b8', fontSize: '14px', cursor: 'pointer' },
-  sidebarFooter: { paddingTop: '16px', borderTop: '1px solid #1e293b', display: 'flex', flexDirection: 'column', gap: '12px' },
-  userProfileTile: { display: 'flex', alignItems: 'center', gap: '10px', padding: '8px' },
-  avatarLetter: { width: '36px', height: '36px', borderRadius: '50%', backgroundColor: '#2563eb', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold' },
-  userNameText: { fontSize: '13px', fontWeight: '600', color: '#f1f5f9', whiteSpace: 'nowrap', textOverflow: 'ellipsis' },
-  userRoleTag: { fontSize: '11px', color: '#38bdf8' },
-  sidebarLogoutBtn: { display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', backgroundColor: '#1e293b', color: '#ef4444', border: '1px solid #334155', padding: '8px', borderRadius: '6px', cursor: 'pointer', fontSize: '12px', fontWeight: '600' },
 
-  /// Main Container - Soft White Glass Overlay with College BG visible
-  mainContainer: {
-    flex: 1,
-    padding: '32px 40px',
-    overflowY: 'auto',
-    backgroundColor: 'transparent',
-    minHeight: '100vh'
+  // Sidebar - Perfectly Aligned Dark Slate
+  sidebar: { 
+    width: '260px', 
+    backgroundColor: '#0f172a', 
+    color: '#ffffff', 
+    display: 'flex', 
+    flexDirection: 'column', 
+    boxShadow: '4px 0 24px rgba(0, 0, 0, 0.08)',
+    zIndex: 10,
+    flexShrink: 0
   },
-    minHeight: '100vh'
+  brandBox: { 
+    display: 'flex', 
+    alignItems: 'center', 
+    gap: '12px', 
+    padding: '24px 20px', 
+    borderBottom: '1px solid rgba(255, 255, 255, 0.08)' 
   },
-  topNavbar: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' },
-  pageTitle: { margin: 0, fontSize: '24px', fontWeight: 'bold', color: '#0f172a' },
-  pageSubtitle: { margin: '4px 0 0', fontSize: '13px', color: '#64748b' },
-  roleBadgeHeader: { display: 'flex', alignItems: 'center', gap: '6px', backgroundColor: 'rgba(15, 23, 42, 0.06)', padding: '6px 12px', borderRadius: '20px', color: '#0f172a', fontSize: '12px', fontWeight: '600' },
-  bellButton: { position: 'relative', padding: '8px', borderRadius: '50%', backgroundColor: '#ffffff', border: '1px solid #e2e8f0', cursor: 'pointer' },
+  brandIcon: { 
+    backgroundColor: '#2563eb', 
+    padding: '8px', 
+    borderRadius: '10px', 
+    display: 'flex', 
+    alignItems: 'center', 
+    justifyContent: 'center',
+    flexShrink: 0
+  },
+  brandTitle: { margin: 0, fontSize: '16px', fontWeight: '700', color: '#f8fafc', letterSpacing: '-0.2px' },
+  brandSub: { fontSize: '11px', color: '#94a3b8', display: 'block', marginTop: '2px' },
+  navMenu: { 
+    marginTop: '20px', 
+    display: 'flex', 
+    flexDirection: 'column', 
+    gap: '6px', 
+    flex: 1, 
+    padding: '0 14px' 
+  },
+  navItemActive: { 
+    display: 'flex', 
+    alignItems: 'center', 
+    gap: '12px', 
+    padding: '10px 14px', 
+    borderRadius: '10px', 
+    backgroundColor: '#2563eb', 
+    color: '#ffffff', 
+    fontWeight: '600', 
+    fontSize: '14px', 
+    cursor: 'pointer' 
+  },
+  navItem: { 
+    display: 'flex', 
+    alignItems: 'center', 
+    gap: '12px', 
+    padding: '10px 14px', 
+    borderRadius: '10px', 
+    color: '#94a3b8', 
+    fontWeight: '500', 
+    fontSize: '14px', 
+    cursor: 'pointer' 
+  },
+  sidebarFooter: { 
+    padding: '16px', 
+    borderTop: '1px solid rgba(255, 255, 255, 0.08)', 
+    display: 'flex', 
+    flexDirection: 'column', 
+    gap: '12px' 
+  },
+  userProfileTile: { 
+    display: 'flex', 
+    alignItems: 'center', 
+    gap: '12px' 
+  },
+  avatarLetter: { 
+    width: '38px', 
+    height: '38px', 
+    borderRadius: '50%', 
+    backgroundColor: '#2563eb', 
+    display: 'flex', 
+    alignItems: 'center', 
+    justifyContent: 'center', 
+    fontWeight: '700', 
+    color: '#ffffff',
+    flexShrink: 0 
+  },
+  userNameText: { fontSize: '13px', fontWeight: '600', color: '#f1f5f9', whiteSpace: 'nowrap' },
+  userRoleTag: { fontSize: '11px', color: '#38bdf8', display: 'block' },
+  sidebarLogoutBtn: { 
+    display: 'flex', 
+    alignItems: 'center', 
+    justifyContent: 'center', 
+    gap: '8px', 
+    padding: '9px 12px', 
+    borderRadius: '8px', 
+    border: '1px solid rgba(255, 255, 255, 0.12)', 
+    background: 'transparent', 
+    color: '#f8fafc', 
+    cursor: 'pointer', 
+    fontSize: '13px', 
+    fontWeight: '500', 
+    width: '100%' 
+  },
 
-  // Analytics Grid - Clean White SaaS Cards
+  // Main Container & Top Header
+  mainContainer: { 
+    flex: 1, 
+    padding: '32px 40px', 
+    overflowY: 'auto', 
+    minHeight: '100vh',
+    backgroundColor: 'transparent'
+  },
+  topNavbar: { 
+    display: 'flex', 
+    justifyContent: 'space-between', 
+    alignItems: 'center', 
+    marginBottom: '28px',
+    gap: '16px' 
+  },
+  pageTitle: { margin: 0, fontSize: '24px', fontWeight: '800', color: '#0f172a' },
+  pageSubtitle: { margin: '4px 0 0', fontSize: '13px', color: '#475569' },
+  roleBadgeHeader: { 
+    display: 'flex', 
+    alignItems: 'center', 
+    gap: '6px', 
+    backgroundColor: '#ffffff', 
+    padding: '8px 16px', 
+    borderRadius: '24px', 
+    border: '1px solid #e2e8f0', 
+    color: '#0f172a', 
+    fontSize: '13px', 
+    fontWeight: '600', 
+    boxShadow: '0 2px 6px rgba(0,0,0,0.04)' 
+  },
+  bellButton: { 
+    position: 'relative', 
+    padding: '8px', 
+    borderRadius: '50%', 
+    backgroundColor: '#ffffff', 
+    border: '1px solid #e2e8f0', 
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  notifBadge: { 
+    position: 'absolute', 
+    top: -2, 
+    right: -2, 
+    backgroundColor: '#ef4444', 
+    color: '#ffffff', 
+    borderRadius: '50%', 
+    width: '18px', 
+    height: '18px', 
+    fontSize: '10px', 
+    display: 'flex', 
+    alignItems: 'center', 
+    justifyContent: 'center',
+    fontWeight: '700' 
+  },
+
+  // Top Metric Cards - SaaS Style
   statsGrid: { display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '16px', marginBottom: '24px' },
   statCard: { 
     backgroundColor: '#ffffff', 
     padding: '18px 20px', 
     borderRadius: '16px', 
-    border: '1px solid #e2e8f0',
-    boxShadow: '0 4px 15px rgba(0, 0, 0, 0.04)',
-    display: 'flex',
-    alignItems: 'center',
-    gap: '16px'
+    border: '1px solid #e2e8f0', 
+    boxShadow: '0 4px 14px rgba(15, 23, 42, 0.05)', 
+    display: 'flex', 
+    alignItems: 'center', 
+    gap: '16px' 
   },
-  statIconWrap: {
-    width: '46px',
-    height: '46px',
-    borderRadius: '12px',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center'
+  statIconWrap: { 
+    width: '46px', 
+    height: '46px', 
+    borderRadius: '12px', 
+    display: 'flex', 
+    alignItems: 'center', 
+    justifyContent: 'center',
+    flexShrink: 0
   },
   statLabel: { fontSize: '13px', color: '#64748b', fontWeight: '500', marginBottom: '4px' },
   statValue: { fontSize: '26px', fontWeight: '700', color: '#0f172a', margin: 0 },
-  statBadge: {
-    fontSize: '11px',
-    fontWeight: '600',
-    padding: '2px 8px',
-    borderRadius: '20px',
-    display: 'inline-flex',
-    alignItems: 'center',
-    gap: '2px'
+  statBadge: { 
+    fontSize: '11px', 
+    fontWeight: '600', 
+    padding: '2px 8px', 
+    borderRadius: '20px', 
+    display: 'inline-flex', 
+    alignItems: 'center', 
+    gap: '2px' 
   },
 
-  // Cards & Forms (Light Theme)
+  // Form Container & Inputs
   card: { 
     backgroundColor: '#ffffff', 
     borderRadius: '16px', 
     border: '1px solid #e2e8f0', 
-    padding: '24px',
-    boxShadow: '0 4px 15px rgba(0, 0, 0, 0.04)',
-    marginBottom: '24px'
+    padding: '24px', 
+    boxShadow: '0 4px 14px rgba(15, 23, 42, 0.05)', 
+    marginBottom: '24px' 
   },
   cardHeader: { marginBottom: '16px' },
-  cardHeaderTitle: { display: 'flex', alignItems: 'center', gap: '8px', fontSize: '16px', fontWeight: 'bold', color: '#0f172a' },
+  cardHeaderTitle: { display: 'flex', alignItems: 'center', gap: '8px', fontSize: '16px', fontWeight: '700', color: '#0f172a' },
   projectFormGrid: { display: 'flex', flexDirection: 'column', gap: '14px' },
   input: { 
-    padding: '11px 16px', 
+    padding: '12px 16px', 
     borderRadius: '10px', 
     border: '1px solid #cbd5e1', 
-    fontSize: '14px',
-    backgroundColor: '#f8fafc',
-    color: '#0f172a',
-    outline: 'none',
-    boxSizing: 'border-box'
+    fontSize: '14px', 
+    backgroundColor: '#f8fafc', 
+    color: '#0f172a', 
+    outline: 'none', 
+    boxSizing: 'border-box' 
   },
-  primaryBtn: { backgroundColor: '#2563eb', color: '#ffffff', border: 'none', padding: '11px 20px', borderRadius: '10px', cursor: 'pointer', fontWeight: '600', fontSize: '14px' },
+  primaryBtn: { 
+    backgroundColor: '#2563eb', 
+    color: '#ffffff', 
+    border: 'none', 
+    padding: '12px 22px', 
+    borderRadius: '10px', 
+    cursor: 'pointer', 
+    fontWeight: '600', 
+    fontSize: '14px' 
+  },
 
-  // Projects Grid
-  sectionHeading: { margin: 0, fontSize: '18px', fontWeight: 'bold', color: '#0f172a' },
+  // Projects Grid & Landscape Cards
+  sectionHeading: { margin: 0, fontSize: '18px', fontWeight: '700', color: '#0f172a' },
   projectsLandscapeGrid: { display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(460px, 1fr))', gap: '20px', marginTop: '16px' },
   projectCardLandscape: { 
     backgroundColor: '#ffffff', 
     borderRadius: '16px', 
-    border: '1px solid #e2e8f0',
-    padding: '20px',
-    boxShadow: '0 4px 15px rgba(0, 0, 0, 0.04)'
-  },
-  // Analytics Grid
- // Analytics Grid - Modern Stat Cards
-  statsGrid: { display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '16px', marginBottom: '24px' },
-  statCard: { 
-    backgroundColor: '#111827', 
-    padding: '18px 20px', 
-    borderRadius: '16px', 
-    border: '1px solid rgba(255, 255, 255, 0.08)',
-    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.25)',
-    display: 'flex',
-    alignItems: 'center',
-    gap: '16px'
-  },
-  statIconWrap: {
-    width: '46px',
-    height: '46px',
-    borderRadius: '12px',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  statLabel: { fontSize: '13px', color: '#94a3b8', fontWeight: '500', marginBottom: '4px' },
-  statValue: { fontSize: '26px', fontWeight: '700', color: '#f8fafc', margin: 0 },
-  statBadge: {
-    fontSize: '11px',
-    fontWeight: '600',
-    padding: '2px 8px',
-    borderRadius: '20px',
-    display: 'inline-flex',
-    alignItems: 'center',
-    gap: '2px'
-  },
-
-  // Cards & Forms
-  card: { 
-    backgroundColor: '#111827', 
-    borderRadius: '16px', 
-    border: '1px solid rgba(255, 255, 255, 0.08)', 
-    padding: '22px',
-    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.25)',
-    marginBottom: '24px'
-  },
-  cardHeader: { marginBottom: '16px' },
-  cardHeaderTitle: { display: 'flex', alignItems: 'center', gap: '8px', fontSize: '16px', fontWeight: 'bold', color: '#f8fafc' },
-  projectFormGrid: { display: 'flex', flexDirection: 'column', gap: '14px' },
-  input: { 
-    padding: '11px 16px', 
-    borderRadius: '10px', 
-    border: '1px solid rgba(255, 255, 255, 0.12)', 
-    fontSize: '14px',
-    backgroundColor: '#1a2234',
-    color: '#f8fafc',
-    outline: 'none',
-    boxSizing: 'border-box'
-  },
-  primaryBtn: { backgroundColor: '#2563eb', color: '#fff', border: 'none', padding: '11px 20px', borderRadius: '10px', cursor: 'pointer', fontWeight: '600', fontSize: '14px' },
-  // Projects Grid
-  sectionHeading: { margin: 0, fontSize: '18px', fontWeight: 'bold', color: '#f8fafc' },
-  projectsLandscapeGrid: { display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(480px, 1fr))', gap: '20px', marginTop: '16px' },
-  projectCardLandscape: { 
-    backgroundColor: 'rgba(15, 23, 42, 0.65)', 
-    backdropFilter: 'blur(12px)',
-    WebkitBackdropFilter: 'blur(12px)',
-    borderRadius: '12px', 
-    border: '1px solid rgba(255, 255, 255, 0.08)',
-    boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.37)'
-  },
-  projectCardTop: { display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' },
-  projectTitle: { margin: 0, fontSize: '17px', fontWeight: 'bold', color: '#0f172a' },
-  projectDesc: { margin: '6px 0 0 0', fontSize: '13px', color: '#64748b' },
-  statusTagActive: { backgroundColor: '#fef3c7', color: '#b45309', padding: '4px 10px', borderRadius: '20px', fontSize: '12px', fontWeight: '600' },
-  statusTagCompleted: { backgroundColor: '#dcfce7', color: '#15803d', padding: '4px 10px', borderRadius: '20px', fontSize: '12px', fontWeight: '600' },
-  membersStrip: { display: 'flex', gap: '12px', marginTop: '14px', padding: '10px', backgroundColor: '#f8fafc', borderRadius: '8px', border: '1px solid #f1f5f9' },
-  memberChip: { fontSize: '12px', color: '#334155' },
-  chipLabel: { color: '#64748b', marginRight: '4px' },
-
-  // Milestones Subsection
-  addMilestoneBox: { backgroundColor: '#f8fafc', padding: '12px', borderRadius: '8px', marginTop: '14px', border: '1px solid #e2e8f0' },
-  milestoneBoxTitle: { fontSize: '12px', fontWeight: '600', color: '#334155', display: 'flex', alignItems: 'center', gap: '6px' },
-  milestoneInputRow: { display: 'flex', gap: '8px', marginTop: '8px' },
-  milestonesSubheading: { margin: '0 0 10px 0', fontSize: '13px', color: '#475569', textTransform: 'uppercase', letterSpacing: '0.5px' },
-  milestoneItem: { backgroundColor: '#f8fafc', borderRadius: '8px', padding: '12px', border: '1px solid #e2e8f0', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '12px' },
-  milestoneHeaderRow: { display: 'flex', alignItems: 'center', gap: '8px' },
-  milestoneTitleText: { fontSize: '14px', fontWeight: '600', color: '#0f172a' },
-  milestoneMeta: { fontSize: '12px', color: '#64748b', marginTop: '4px', display: 'flex', alignItems: 'center', gap: '12px' },
-  submissionLink: { display: 'flex', alignItems: 'center', gap: '4px', color: '#2563eb', textDecoration: 'none', fontWeight: '500' },
-  badgeApproved: { backgroundColor: '#dcfce7', color: '#166534', padding: '2px 8px', borderRadius: '12px', fontSize: '11px', fontWeight: 'bold' },
-  badgePending: { backgroundColor: '#fef3c7', color: '#b45309', padding: '2px 8px', borderRadius: '12px', fontSize: '11px', fontWeight: 'bold' },
-  studentSubmitGroup: { display: 'flex', gap: '6px' },
-  smallInput: { padding: '6px 10px', borderRadius: '6px', border: '1px solid #cbd5e1', fontSize: '12px' },
-  smallBtn: { backgroundColor: '#2563eb', color: '#fff', border: 'none', padding: '6px 12px', borderRadius: '6px', fontSize: '12px', fontWeight: '600', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px' },
-  approveBtn: { backgroundColor: '#dcfce7', color: '#166534', border: 'none', padding: '6px 12px', borderRadius: '6px', fontSize: '12px', fontWeight: 'bold', cursor: 'pointer' },
-  rejectBtn: { backgroundColor: '#fee2e2', color: '#991b1b', border: 'none', padding: '6px 12px', borderRadius: '6px', fontSize: '12px', fontWeight: 'bold', cursor: 'pointer' },
-  noMilestonesText: { fontSize: '13px', color: '#94a3b8', fontStyle: 'italic', margin: 0 },
-  emptyState: { padding: '40px', textAlign: 'center', backgroundColor: '#fff', borderRadius: '12px', border: '1px solid #e2e8f0', color: '#94a3b8' },
-
-  // Auth Card
-  authWrapper: { minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#f1f5f9' },
-  authCard: { backgroundColor: '#fff', padding: '36px', borderRadius: '16px', boxShadow: '0 10px 25px -5px rgba(0,0,0,0.1)', width: '100%', maxWidth: '420px', border: '1px solid #e2e8f0' },
-  authLogoBadge: { width: '48px', height: '48px', borderRadius: '12px', backgroundColor: '#eff6ff', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 12px auto' },
-  heading: { margin: 0, fontSize: '20px', fontWeight: 'bold', color: '#0f172a' },
-  subHeading: { margin: '6px 0 0 0', fontSize: '13px', color: '#64748b' },
-  form: { display: 'flex', flexDirection: 'column', gap: '14px' },
-  switchBtn: { marginTop: '16px', background: 'none', border: 'none', color: '#2563eb', fontSize: '13px', cursor: 'pointer', fontWeight: '500', width: '100%', textAlign: 'center' }
+    border: '1px solid #e2e8f0', 
+    padding: '22px', 
+    boxShadow: '0 4px 14px rgba(15, 23, 42, 0.05)' 
+  }
 };
