@@ -395,3 +395,29 @@ div[style*="projectCardLandscape"] button {
   font-weight: 600 !important;
   cursor: pointer !important;
 }
+/* Force Active Projects & Timeline Heading Dark */
+main h2,
+main h2 span,
+main > div > div > h2,
+main > div > div > p {
+  color: #0f172a !important;
+  opacity: 1 !important;
+}
+
+/* Subtitle under Active Projects */
+main p {
+  color: #475569 !important;
+}
+
+/* Fix Dark Milestone Input to Clean White */
+div[style*="projectCardLandscape"] input[type="text"],
+main form input[type="text"] {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border: 1px solid #cbd5e1 !important;
+}
+
+div[style*="projectCardLandscape"] input[type="text"]::placeholder,
+main form input[type="text"]::placeholder {
+  color: #94a3b8 !important;
+}
