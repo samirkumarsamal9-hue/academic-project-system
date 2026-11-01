@@ -229,7 +229,9 @@ export default function App() {
       alert(err.response?.data?.message || 'Review failed');
     }
   };
-
+const handleReviewMilestone = (projectId, milestoneId, status) => {
+    reviewMilestone(milestoneId, status);
+  };
   if (!user) {
     return (
       <div style={styles.authWrapper}>
