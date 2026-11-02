@@ -63,6 +63,52 @@ const [user, setUser] = useState(() => {
     if (savedUser && token) {
       setUser(JSON.parse(savedUser));
     }
+    // Milestone input typing handler
+  const handleMilestoneChange = (projectId, field, value) => {
+    setMilestoneInputs((prev) => ({
+      ...prev,
+      [projectId]: {
+        ...prev[projectId],
+        [field]: value
+      }
+    }));
+  };
+
+  // Add Milestone API call
+  const handleAddMilestone = async (e, projectId) => {
+    e.preventDefault();
+    const input = milestoneInputs[projectId];
+    if (!input || !input.title) {
+      alert('Please enter a milestone title');
+      return;
+    }
+
+    try {
+      await axios.post(
+        `${API_BASE}/projects/${projectId}/milestones`,
+        {
+          title: input.title,
+          deadline: input.deadline || null
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` }
+        }
+      );
+
+      alert('Milestone added successfully!');
+      setMilestoneInputs((prev) => ({
+        ...prev,
+        [projectId]: { title: '', deadline: '' }
+      }));
+
+      if (typeof fetchProjects === 'function') {
+        fetchProjects();
+      }
+    } catch (err) {
+      console.error('Error adding milestone:', err);
+      alert(err.response?.data?.message || 'Failed to add milestone');
+    }
+  };
   }, [token]);
 
   useEffect(() => {
