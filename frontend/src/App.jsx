@@ -87,8 +87,9 @@ const [user, setUser] = useState(() => {
 
     try {
       await axios.post(
-        `${API_BASE}/projects/${projectId}/milestones`,
+       `${API_BASE}/milestones`,
         {
+          project: projectId,
           title: input.title,
           deadline: input.deadline || null
         },
