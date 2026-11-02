@@ -600,10 +600,69 @@ const handleReviewMilestone = (projectId, milestoneId, status) => {
                               <div style={{ fontSize: '13px', fontWeight: '600', color: '#0f172a' }}>{m.title}</div>
                               <div style={{ fontSize: '11px', color: '#64748b', marginTop: '2px' }}>Due: {new Date(m.deadline).toLocaleDateString()}</div>
                             </div>
-                            <div style={{ display: 'flex', gap: '8px' }}>
-                              <button type="button" onClick={() => handleReviewMilestone(p._id, m._id, 'Approved')} style={{ backgroundColor: '#10b981', color: '#fff', border: 'none', padding: '5px 12px', borderRadius: '6px', fontSize: '12px', fontWeight: '600', cursor: 'pointer' }}>Approve</button>
-                              <button type="button" onClick={() => handleReviewMilestone(p._id, m._id, 'Revision')} style={{ backgroundColor: '#ef4444', color: '#fff', border: 'none', padding: '5px 12px', borderRadius: '6px', fontSize: '12px', fontWeight: '600', cursor: 'pointer' }}>Revision</button>
-                            </div>
+                       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+  {m.status === 'Approved' ? (
+    <span style={{ 
+      backgroundColor: '#dcfce7', 
+      color: '#166534', 
+      padding: '4px 10px', 
+      borderRadius: '20px', 
+      fontSize: '11px', 
+      fontWeight: '700',
+      display: 'inline-flex',
+      alignItems: 'center',
+      gap: '4px'
+    }}>
+      ✓ Approved
+    </span>
+  ) : m.status === 'Revision' ? (
+    <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+      <span style={{ 
+        backgroundColor: '#fee2e2', 
+        color: '#991b1b', 
+        padding: '4px 8px', 
+        borderRadius: '20px', 
+        fontSize: '11px', 
+        fontWeight: '700' 
+      }}>
+        Revision Required
+      </span>
+      {user?.role !== 'Student' && (
+        <button 
+          type="button" 
+          onClick={() => handleReviewMilestone(p._id, m._id, 'Approved')} 
+          style={{ backgroundColor: '#10b981', color: '#fff', border: 'none', padding: '4px 10px', borderRadius: '6px', fontSize: '11px', fontWeight: '600', cursor: 'pointer' }}
+        >
+          Approve
+        </button>
+      )}
+    </div>
+  ) : (
+    /* Pending Review: Sirf Supervisor/Admin ko review buttons dikhenge */
+    user?.role !== 'Student' ? (
+      <div style={{ display: 'flex', gap: '6px' }}>
+        <button 
+          type="button" 
+          onClick={() => handleReviewMilestone(p._id, m._id, 'Approved')} 
+          style={{ backgroundColor: '#10b981', color: '#fff', border: 'none', padding: '4px 10px', borderRadius: '6px', fontSize: '11px', fontWeight: '600', cursor: 'pointer' }}
+        >
+          Approve
+        </button>
+        <button 
+          type="button" 
+          onClick={() => handleReviewMilestone(p._id, m._id, 'Revision')} 
+          style={{ backgroundColor: '#ef4444', color: '#fff', border: 'none', padding: '4px 10px', borderRadius: '6px', fontSize: '11px', fontWeight: '600', cursor: 'pointer' }}
+        >
+          Revision
+        </button>
+      </div>
+    ) : (
+      <span style={{ backgroundColor: '#fef3c7', color: '#92400e', padding: '4px 10px', borderRadius: '20px', fontSize: '11px', fontWeight: '600' }}>
+        Pending Review
+      </span>
+    )
+  )}
+</div>
                           </div>
                         ))}
                       </div>
