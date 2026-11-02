@@ -21,9 +21,15 @@ const API_BASE = 'https://academic-project-system.onrender.com/api/v1';
 
 export default function App() {
   const [showAccountModal, setShowAccountModal] = useState(false);
-  const [user, setUser] = useState(null);
-  const [token, setToken] = useState(localStorage.getItem('token') || '');
-  const [authMode, setAuthMode] = useState('login');
+const [token, setToken] = useState(sessionStorage.getItem('token') || '');
+const [user, setUser] = useState(() => {
+  try {
+    const saved = sessionStorage.getItem('user');
+    return saved ? JSON.parse(saved) : null;
+  } catch (e) {
+    return null;
+  }
+});  const [authMode, setAuthMode] = useState('login');
   
   // Auth Form State
   const [formData, setFormData] = useState({
@@ -88,9 +94,8 @@ export default function App() {
           email: formData.email,
           password: formData.password
         });
-        localStorage.setItem('token', res.data.token);
-        localStorage.setItem('user', JSON.stringify(res.data.user));
-        setToken(res.data.token);
+sessionStorage.setItem('token', res.data.token);
+sessionStorage.setItem('user', JSON.stringify(res.data.user));        setToken(res.data.token);
         setUser(res.data.user);
       } else {
         await axios.post(`${API_BASE}/auth/register`, formData);
@@ -103,10 +108,10 @@ export default function App() {
   };
 
   const handleLogout = () => {
-    localStorage.clear();
-    setUser(null);
-    setToken('');
-  };
+  sessionStorage.clear();
+  setUser(null);
+  setToken('');
+};
 
   const fetchUsers = async () => {
     try {
@@ -251,69 +256,191 @@ const handleReviewMilestone = (projectId, milestoneId, status) => {
   };  
   if (!user) {
     return (
-      <div style={styles.authWrapper}>
-        <div style={styles.authCard}>
-          <div style={{ textAlign: 'center', marginBottom: '24px' }}>
-            <div style={styles.authLogoBadge}><FolderKanban size={28} color="#2563eb" /></div>
-            <h2 style={styles.heading}>Academic Monitor Portal</h2>
-            <p style={styles.subHeading}>{authMode === 'login' ? 'Sign in to monitor projects & deadlines' : 'Register your institutional account'}</p>
+      <div style={{
+        minHeight: '100vh',
+        width: '100vw',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundImage: "linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.85)), url('/Mitm.jpg')",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        padding: '20px',
+        boxSizing: 'border-box'
+      }}>
+        <div style={{
+          backgroundColor: '#ffffff',
+          width: '100%',
+          maxWidth: '420px',
+          borderRadius: '16px',
+          padding: '36px 32px',
+          boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.3)',
+          boxSizing: 'border-box',
+          textAlign: 'center'
+        }}>
+          {/* Logo Badge */}
+          <div style={{
+            width: '48px',
+            height: '48px',
+            backgroundColor: '#eff6ff',
+            color: '#2563eb',
+            borderRadius: '12px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            margin: '0 auto 16px',
+            fontSize: '24px'
+          }}>
+            🎓
           </div>
-          
-          <form onSubmit={handleAuth} style={styles.form}>
+          <h2 style={{ margin: '0 0 6px', fontSize: '22px', fontWeight: '800', color: '#0f172a' }}>
+            Academic Monitor Portal
+          </h2>
+          <p style={{ margin: '0 0 24px', fontSize: '13px', color: '#64748b' }}>
+            {authMode === 'login' ? 'Sign in to monitor projects & deadlines' : 'Create an institutional account'}
+          </p>
+
+          {/* Form */}
+          <form onSubmit={handleAuth} style={{ display: 'flex', flexDirection: 'column', gap: '14px', textAlign: 'left' }}>
             {authMode === 'register' && (
               <>
-                <input
-                  style={styles.input}
-                  type="text"
-                  placeholder="Full Name"
-                  required
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                />
-                <select
-                  style={styles.input}
-                  value={formData.role}
-                  onChange={(e) => setFormData({ ...formData, role: e.target.value })}
-                >
-                  <option value="Student">Student</option>
-                  <option value="Supervisor">Supervisor</option>
-                  <option value="Admin">Admin</option>
-                </select>
-                <input
-                  style={styles.input}
-                  type="text"
-                  placeholder="Department (e.g. CSE)"
-                  value={formData.department}
-                  onChange={(e) => setFormData({ ...formData, department: e.target.value })}
-                />
+                <div>
+                  <label style={{ display: 'block', fontSize: '12px', fontWeight: '600', color: '#334155', marginBottom: '6px' }}>Full Name</label>
+                  <input
+                    type="text"
+                    placeholder="Enter your name"
+                    required
+                    value={formData.name || ''}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    style={{
+                      width: '100%',
+                      padding: '10px 14px',
+                      borderRadius: '8px',
+                      border: '1px solid #cbd5e1',
+                      fontSize: '14px',
+                      color: '#0f172a',
+                      backgroundColor: '#f8fafc',
+                      boxSizing: 'border-box',
+                      outline: 'none'
+                    }}
+                  />
+                </div>
+                <div>
+                  <label style={{ display: 'block', fontSize: '12px', fontWeight: '600', color: '#334155', marginBottom: '6px' }}>Role</label>
+                  <select
+                    value={formData.role || 'Student'}
+                    onChange={(e) => setFormData({ ...formData, role: e.target.value })}
+                    style={{
+                      width: '100%',
+                      padding: '10px 14px',
+                      borderRadius: '8px',
+                      border: '1px solid #cbd5e1',
+                      fontSize: '14px',
+                      color: '#0f172a',
+                      backgroundColor: '#f8fafc',
+                      boxSizing: 'border-box',
+                      outline: 'none'
+                    }}
+                  >
+                    <option value="Student">Student</option>
+                    <option value="Supervisor">Supervisor</option>
+                    <option value="Admin">Admin</option>
+                  </select>
+                </div>
               </>
             )}
-            <input
-              style={styles.input}
-              type="email"
-              placeholder="Institutional Email"
-              required
-              value={formData.email}
-              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-            />
-            <input
-              style={styles.input}
-              type="password"
-              placeholder="Password"
-              required
-              value={formData.password}
-              onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-            />
-            <button type="submit" style={styles.primaryBtn}>
+
+            <div>
+              <label style={{ display: 'block', fontSize: '12px', fontWeight: '600', color: '#334155', marginBottom: '6px' }}>Institutional Email</label>
+              <input
+                type="email"
+                placeholder="name@institution.edu"
+                required
+                value={formData.email || ''}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                style={{
+                  width: '100%',
+                  padding: '10px 14px',
+                  borderRadius: '8px',
+                  border: '1px solid #cbd5e1',
+                  fontSize: '14px',
+                  color: '#0f172a',
+                  backgroundColor: '#f8fafc',
+                  boxSizing: 'border-box',
+                  outline: 'none'
+                }}
+              />
+            </div>
+
+            <div>
+              <label style={{ display: 'block', fontSize: '12px', fontWeight: '600', color: '#334155', marginBottom: '6px' }}>Password</label>
+              <input
+                type="password"
+                placeholder="••••••••"
+                required
+                value={formData.password || ''}
+                onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                style={{
+                  width: '100%',
+                  padding: '10px 14px',
+                  borderRadius: '8px',
+                  border: '1px solid #cbd5e1',
+                  fontSize: '14px',
+                  color: '#0f172a',
+                  backgroundColor: '#f8fafc',
+                  boxSizing: 'border-box',
+                  outline: 'none'
+                }}
+              />
+            </div>
+
+            <button
+              type="submit"
+              style={{
+                marginTop: '10px',
+                width: '100%',
+                padding: '12px',
+                backgroundColor: '#2563eb',
+                color: '#ffffff',
+                border: 'none',
+                borderRadius: '8px',
+                fontSize: '14px',
+                fontWeight: '700',
+                cursor: 'pointer',
+                boxShadow: '0 4px 6px -1px rgba(37, 99, 235, 0.3)'
+              }}
+            >
               {authMode === 'login' ? 'Sign In to Workspace' : 'Create Account'}
             </button>
           </form>
-          <button
-            onClick={() => setAuthMode(authMode === 'login' ? 'register' : 'login')}
-            style={styles.switchBtn}
-          >
-            {authMode === 'login' ? "Don't have an account? Register" : 'Already registered? Log in'}
-          </button>
+
+          {/* Toggle Login/Register */}
+          <div style={{ marginTop: '20px', fontSize: '13px', color: '#64748b' }}>
+            {authMode === 'login' ? (
+              <>
+                Don't have an account?{' '}
+                <button
+                  type="button"
+                  onClick={() => setAuthMode('register')}
+                  style={{ background: 'none', border: 'none', color: '#2563eb', fontWeight: '700', cursor: 'pointer', padding: 0 }}
+                >
+                  Register
+                </button>
+              </>
+            ) : (
+              <>
+                Already have an account?{' '}
+                <button
+                  type="button"
+                  onClick={() => setAuthMode('login')}
+                  style={{ background: 'none', border: 'none', color: '#2563eb', fontWeight: '700', cursor: 'pointer', padding: 0 }}
+                >
+                  Sign In
+                </button>
+              </>
+            )}
+          </div>
         </div>
       </div>
     );
