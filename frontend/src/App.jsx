@@ -706,30 +706,32 @@ const handleReviewMilestone = (projectId, milestoneId, status) => {
                     </div>
                   </div>
 
-                  {/* Add Milestone Inline Bar */}
-                  <div style={{ padding: '12px 14px', backgroundColor: '#f8fafc', borderRadius: '10px', border: '1px solid #e2e8f0' }}>
-                    <span style={{ fontSize: '12px', fontWeight: '700', color: '#334155', display: 'block', marginBottom: '8px' }}>
-                      + Add Milestone / Deadline:
-                    </span>
-                    <form onSubmit={(e) => handleAddMilestone(e, p._id)} style={{ display: 'flex', gap: '8px' }}>
-                      <input 
-                        type="text" 
-                        placeholder="e.g. SRS Submission, Design Architecture" 
-                        value={milestoneInputs[p._id]?.title || ''} 
-                        onChange={(e) => handleMilestoneChange(p._id, 'title', e.target.value)}
-                        style={{ flex: 2, padding: '8px 12px', fontSize: '13px', borderRadius: '8px', border: '1px solid #cbd5e1', backgroundColor: '#ffffff', color: '#0f172a', outline: 'none' }}
-                      />
-                      <input 
-                        type="date" 
-                        value={milestoneInputs[p._id]?.deadline || ''} 
-                        onChange={(e) => handleMilestoneChange(p._id, 'deadline', e.target.value)}
-                        style={{ flex: 1, padding: '8px 10px', fontSize: '13px', borderRadius: '8px', border: '1px solid #cbd5e1', backgroundColor: '#ffffff', color: '#0f172a', outline: 'none' }}
-                      />
-                      <button type="submit" style={{ backgroundColor: '#2563eb', color: '#ffffff', border: 'none', padding: '8px 16px', borderRadius: '8px', fontSize: '13px', fontWeight: '600', cursor: 'pointer' }}>
-                        Add
-                      </button>
-                    </form>
-                  </div>
+                  {/* Add Milestone Inline Bar: Only for Supervisor & Admin */}
+                  {user?.role !== 'Student' && (
+                    <div style={{ padding: '12px 14px', backgroundColor: '#f8fafc', borderRadius: '8px', marginBottom: '14px', border: '1px solid #e2e8f0' }}>
+                      <span style={{ fontSize: '12px', fontWeight: '700', color: '#334155', display: 'block', marginBottom: '6px' }}>
+                        + Add Milestone / Deadline:
+                      </span>
+                      <form onSubmit={(e) => handleAddMilestone(e, p._id)} style={{ display: 'flex', gap: '8px' }}>
+                        <input
+                          type="text"
+                          placeholder="e.g. SRS Submission, Design Architecture"
+                          value={milestoneInputs[p._id]?.title || ''}
+                          onChange={(e) => handleMilestoneChange(p._id, 'title', e.target.value)}
+                          style={{ flex: 2, padding: '8px 12px', fontSize: '13px', borderRadius: '6px', border: '1px solid #cbd5e1' }}
+                        />
+                        <input
+                          type="date"
+                          value={milestoneInputs[p._id]?.deadline || ''}
+                          onChange={(e) => handleMilestoneChange(p._id, 'deadline', e.target.value)}
+                          style={{ flex: 1, padding: '8px 10px', fontSize: '13px', borderRadius: '6px', border: '1px solid #cbd5e1' }}
+                        />
+                        <button type="submit" style={{ backgroundColor: '#2563eb', color: '#fff', border: 'none', padding: '8px 16px', borderRadius: '6px', fontWeight: '600', cursor: 'pointer' }}>
+                          Add
+                        </button>
+                      </form>
+                    </div>
+                  )}
 
                  {/* Milestones & Review Lifecycle */}
                   <div style={{ marginTop: '8px' }}>
