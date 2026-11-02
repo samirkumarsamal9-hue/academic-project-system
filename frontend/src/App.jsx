@@ -232,6 +232,23 @@ export default function App() {
 const handleReviewMilestone = (projectId, milestoneId, status) => {
     reviewMilestone(milestoneId, status);
   };
+  const handleSubmitMilestone = async (milestoneId) => {
+    const fileUrl = prompt('Enter submission link (Google Drive / GitHub URL):');
+    if (!fileUrl) return;
+
+    try {
+      const token = user?.token || localStorage.getItem('token');
+      await axios.put(
+        `${API_BASE}/milestones/${milestoneId}/submit`,
+        { fileUrl },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      alert('Milestone submitted successfully!');
+      if (typeof fetchProjects === 'function') fetchProjects();
+    } catch (err) {
+      alert(err.response?.data?.message || 'Submission failed');
+    }
+  };  
   if (!user) {
     return (
       <div style={styles.authWrapper}>
@@ -587,87 +604,123 @@ const handleReviewMilestone = (projectId, milestoneId, status) => {
                     </form>
                   </div>
 
-                  {/* Milestones & Review List */}
-                  <div>
-                    <span style={{ fontSize: '11px', fontWeight: '700', color: '#475569', textTransform: 'uppercase', letterSpacing: '0.5px', display: 'block', marginBottom: '8px' }}>
-                      Assigned Milestones & Reviews
-                    </span>
+                 {/* Milestones & Review Lifecycle */}
+                  <div style={{ marginTop: '8px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                      <span style={{ fontSize: '11px', fontWeight: '700', color: '#475569', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                        Assigned Milestones & Reviews
+                      </span>
+                      <span style={{ fontSize: '11px', fontWeight: '600', color: '#64748b' }}>
+                        {p.milestones?.filter(m => m.status === 'Approved').length || 0} / {p.milestones?.length || 0} Approved
+                      </span>
+                    </div>
+
                     {p.milestones && p.milestones.length > 0 ? (
-                      <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                         {p.milestones.map((m, idx) => (
-                          <div key={idx} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 14px', backgroundColor: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px' }}>
-                            <div>
-                              <div style={{ fontSize: '13px', fontWeight: '600', color: '#0f172a' }}>{m.title}</div>
-                              <div style={{ fontSize: '11px', color: '#64748b', marginTop: '2px' }}>Due: {new Date(m.deadline).toLocaleDateString()}</div>
+                          <div 
+                            key={m._id || idx} 
+                            style={{ 
+                              padding: '12px 14px', 
+                              backgroundColor: '#f8fafc', 
+                              border: '1px solid #e2e8f0', 
+                              borderRadius: '10px',
+                              display: 'flex',
+                              flexDirection: 'column',
+                              gap: '8px'
+                            }}
+                          >
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
+                              <div>
+                                <div style={{ fontSize: '13px', fontWeight: '700', color: '#0f172a' }}>{m.title}</div>
+                                <div style={{ fontSize: '11px', color: '#64748b', marginTop: '2px' }}>
+                                  Due: {m.deadline ? new Date(m.deadline).toLocaleDateString() : 'No date set'}
+                                </div>
+                              </div>
+
+                              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                {m.status === 'Approved' ? (
+                                  <span style={{ 
+                                    backgroundColor: '#dcfce7', 
+                                    color: '#166534', 
+                                    padding: '4px 10px', 
+                                    borderRadius: '20px', 
+                                    fontSize: '11px', 
+                                    fontWeight: '700',
+                                    display: 'inline-flex',
+                                    alignItems: 'center',
+                                    gap: '4px'
+                                  }}>
+                                    ✓ Approved
+                                  </span>
+                                ) : (
+                                  <>
+                                    {user?.role === 'Student' && (
+                                      <button 
+                                        type="button" 
+                                        onClick={() => handleSubmitMilestone(m._id)}
+                                        style={{ backgroundColor: '#2563eb', color: '#fff', border: 'none', padding: '5px 12px', borderRadius: '6px', fontSize: '11px', fontWeight: '600', cursor: 'pointer' }}
+                                      >
+                                        {m.fileUrl ? 'Re-Submit Work' : 'Submit Work'}
+                                      </button>
+                                    )}
+
+                                    {user?.role !== 'Student' && (
+                                      <div style={{ display: 'flex', gap: '6px' }}>
+                                        <button 
+                                          type="button" 
+                                          onClick={() => handleReviewMilestone(p._id, m._id, 'Approved')} 
+                                          style={{ backgroundColor: '#10b981', color: '#fff', border: 'none', padding: '5px 10px', borderRadius: '6px', fontSize: '11px', fontWeight: '600', cursor: 'pointer' }}
+                                        >
+                                          Approve
+                                        </button>
+                                        <button 
+                                          type="button" 
+                                          onClick={() => handleReviewMilestone(p._id, m._id, 'Revision')} 
+                                          style={{ backgroundColor: '#ef4444', color: '#fff', border: 'none', padding: '5px 10px', borderRadius: '6px', fontSize: '11px', fontWeight: '600', cursor: 'pointer' }}
+                                        >
+                                          Revision
+                                        </button>
+                                      </div>
+                                    )}
+                                  </>
+                                )}
+                              </div>
                             </div>
-                       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-  {m.status === 'Approved' ? (
-    <span style={{ 
-      backgroundColor: '#dcfce7', 
-      color: '#166534', 
-      padding: '4px 10px', 
-      borderRadius: '20px', 
-      fontSize: '11px', 
-      fontWeight: '700',
-      display: 'inline-flex',
-      alignItems: 'center',
-      gap: '4px'
-    }}>
-      ✓ Approved
-    </span>
-  ) : m.status === 'Revision' ? (
-    <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-      <span style={{ 
-        backgroundColor: '#fee2e2', 
-        color: '#991b1b', 
-        padding: '4px 8px', 
-        borderRadius: '20px', 
-        fontSize: '11px', 
-        fontWeight: '700' 
-      }}>
-        Revision Required
-      </span>
-      {user?.role !== 'Student' && (
-        <button 
-          type="button" 
-          onClick={() => handleReviewMilestone(p._id, m._id, 'Approved')} 
-          style={{ backgroundColor: '#10b981', color: '#fff', border: 'none', padding: '4px 10px', borderRadius: '6px', fontSize: '11px', fontWeight: '600', cursor: 'pointer' }}
-        >
-          Approve
-        </button>
-      )}
-    </div>
-  ) : (
-    /* Pending Review: Sirf Supervisor/Admin ko review buttons dikhenge */
-    user?.role !== 'Student' ? (
-      <div style={{ display: 'flex', gap: '6px' }}>
-        <button 
-          type="button" 
-          onClick={() => handleReviewMilestone(p._id, m._id, 'Approved')} 
-          style={{ backgroundColor: '#10b981', color: '#fff', border: 'none', padding: '4px 10px', borderRadius: '6px', fontSize: '11px', fontWeight: '600', cursor: 'pointer' }}
-        >
-          Approve
-        </button>
-        <button 
-          type="button" 
-          onClick={() => handleReviewMilestone(p._id, m._id, 'Revision')} 
-          style={{ backgroundColor: '#ef4444', color: '#fff', border: 'none', padding: '4px 10px', borderRadius: '6px', fontSize: '11px', fontWeight: '600', cursor: 'pointer' }}
-        >
-          Revision
-        </button>
-      </div>
-    ) : (
-      <span style={{ backgroundColor: '#fef3c7', color: '#92400e', padding: '4px 10px', borderRadius: '20px', fontSize: '11px', fontWeight: '600' }}>
-        Pending Review
-      </span>
-    )
-  )}
-</div>
+
+                            {m.fileUrl && (
+                              <div style={{ fontSize: '12px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                                <span style={{ color: '#64748b', fontWeight: '500' }}>Attached Submission:</span>
+                                <a 
+                                  href={m.fileUrl.startsWith('http') ? m.fileUrl : `https://${m.fileUrl}`} 
+                                  target="_blank" 
+                                  rel="noopener noreferrer" 
+                                  style={{ color: '#2563eb', fontWeight: '600', textDecoration: 'underline' }}
+                                >
+                                  View Link / Artifact ↗
+                                </a>
+                              </div>
+                            )}
+
+                            {m.status === 'Revision' && m.feedback && (
+                              <div style={{ 
+                                padding: '8px 10px', 
+                                backgroundColor: '#fef2f2', 
+                                border: '1px solid #fee2e2', 
+                                borderRadius: '6px', 
+                                fontSize: '12px', 
+                                color: '#991b1b' 
+                              }}>
+                                <strong>Feedback from Guide:</strong> {m.feedback}
+                             </div>
+                            )}
                           </div>
                         ))}
                       </div>
                     ) : (
-                      <div style={{ fontSize: '12px', color: '#94a3b8', fontStyle: 'italic', padding: '4px 0' }}>No milestones added yet.</div>
+                      <div style={{ fontSize: '12px', color: '#94a3b8', fontStyle: 'italic', padding: '6px 0' }}>
+                        No milestones added yet.
+                      </div>
                     )}
                   </div>
                 </div>
