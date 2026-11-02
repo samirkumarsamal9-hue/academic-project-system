@@ -59,11 +59,13 @@ const [user, setUser] = useState(() => {
   const [submissionUrls, setSubmissionUrls] = useState({});
 
   useEffect(() => {
-    const savedUser = localStorage.getItem('user');
+    const savedUser = sessionStorage.getItem('user');
     if (savedUser && token) {
       setUser(JSON.parse(savedUser));
     }
-    // Milestone input typing handler
+  }, [token]);
+
+  // Milestone input typing handler
   const handleMilestoneChange = (projectId, field, value) => {
     setMilestoneInputs((prev) => ({
       ...prev,
@@ -109,7 +111,7 @@ const [user, setUser] = useState(() => {
       alert(err.response?.data?.message || 'Failed to add milestone');
     }
   };
-  }, [token]);
+  
 
   useEffect(() => {
     if (!token || !user) return;
