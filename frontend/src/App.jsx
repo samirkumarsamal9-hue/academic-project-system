@@ -744,16 +744,20 @@ const handleReviewMilestone = (projectId, milestoneId, status) => {
                   </div>
 
                   {/* Student & Supervisor Badge Bar */}
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', padding: '10px 14px', backgroundColor: '#f8fafc', borderRadius: '10px', border: '1px solid #e2e8f0' }}>
-                    <div style={{ fontSize: '12px' }}>
-                      <span style={{ color: '#64748b', display: 'block', fontSize: '11px', textTransform: 'uppercase', fontWeight: '600' }}>Student</span>
-                      <strong style={{ color: '#0f172a' }}>{p.studentName || 'Unassigned'}</strong>
-                    </div>
-                    <div style={{ fontSize: '12px' }}>
-                      <span style={{ color: '#64748b', display: 'block', fontSize: '11px', textTransform: 'uppercase', fontWeight: '600' }}>Supervisor</span>
-                      <strong style={{ color: '#0f172a' }}>{p.supervisorName || 'Unassigned'}</strong>
-                    </div>
-                  </div>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
+        <div style={{ fontSize: '12px' }}>
+          <span style={{ color: '#64748b', display: 'block', fontSize: '11px' }}>STUDENT</span>
+          <strong style={{ color: '#0f172a' }}>
+            {p.student?.name || (Array.isArray(p.studentGroup) ? p.studentGroup[0]?.name : p.studentGroup?.name) || p.studentName || 'Unassigned'}
+          </strong>
+        </div>
+        <div style={{ fontSize: '12px' }}>
+          <span style={{ color: '#64748b', display: 'block', fontSize: '11px' }}>SUPERVISOR</span>
+          <strong style={{ color: '#0f172a' }}>
+            {p.supervisor?.name || p.supervisorName || 'Unassigned'}
+          </strong>
+        </div>
+      </div>
 
                   {/* Add Milestone Inline Bar: Only for Supervisor & Admin */}
                   {user?.role !== 'Student' && (
